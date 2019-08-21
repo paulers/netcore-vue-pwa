@@ -59,6 +59,8 @@ namespace NetcoreVuePwa
         };
       });
 
+      services.AddHealthChecks();
+
       // add token authentication as a strongly typed class to the DI container
       services.Configure<TokenConfigurationModel>(Configuration.GetSection("TokenConfiguration"));
       var token = Configuration.GetSection("TokenConfiguration").Get<TokenConfigurationModel>();
@@ -106,6 +108,7 @@ namespace NetcoreVuePwa
         app.UseHsts();
       }
       app.UseHttpsRedirection();
+      app.UseHealthChecks("/health");
       app.UseAuthentication();
       app.UseMvc();
       app.UseSpaStaticFiles();

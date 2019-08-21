@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 
 namespace NetcoreVuePwa {
@@ -7,9 +8,12 @@ namespace NetcoreVuePwa {
 
   public class UserRepository : IUserRepository
   {
-    public Task<ApplicationUser> GetUserAndVerify(string email, string password)
+    public async Task<ApplicationUser> GetUserAndVerify(string email, string password)
     {
-      throw new System.NotImplementedException();
+      return new ApplicationUser {
+        Id = Guid.NewGuid(),
+        Email = email
+      };
     }
   }
 }
